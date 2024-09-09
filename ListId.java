@@ -3,7 +3,7 @@ public class ListId {
 
     // fields for id object
     int id;
-    private int listId;
+    int listId;
     private String name;
 
     // Constructor

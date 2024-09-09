@@ -1,4 +1,6 @@
-import java.net.MalformedURLException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,15 +22,24 @@ public class Main {
         try {
             String u = "https://fetch-hiring.s3.amazonaws.com/hiring.json";
             URL url = new URL(u);
-            // System.err.println(url.openStream());
+            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
             // Scan the url string
+            String inputLine;
+            while ((inputLine = br.readLine()) != null) {
+                String obString = inputLine;
+                String newIString = obString.replaceAll("[^0-9,]", "");
+                String[] list = newIString.split(",", -1);
 
+                System.out.println(newIString);
+            }
+
+            br.close();
             // create ListId from scanned Strings
             // add ListId objects to ArrayList
 
         }
         // catch url errors
-        catch (MalformedURLException e) {
+        catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -61,7 +72,7 @@ public class Main {
                 // run 2: sort arrayList by ListId id value
                 Collections.sort(ids, new Comparator<ListId>() {
                     public int compare(ListId o1, ListId o2) {
-                        return o1.id < o2.id ? -1 : 1;
+                        return o1.listId < o2.listId ? -1 : 1;
                     }
                 });
                 break;
@@ -77,7 +88,7 @@ public class Main {
 
             case "4":
                 // run 4: eliminate ListId's containing null and display arraylist
-                ids.removeIf(n -> (((ListId) n).getName() == null));
+                ids.removeIf(n -> (((ListId) n).getName() == null || ((ListId) n).getName().isBlank()));
                 break;
         }
 
