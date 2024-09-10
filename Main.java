@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -20,22 +21,22 @@ public class Main {
 
         // fetch the Url here
         try {
+            // create a String for the URL
             String u = "https://fetch-hiring.s3.amazonaws.com/hiring.json";
             URL url = new URL(u);
+
+            // Open Url stream and read the URL content
             BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-            // Scan the url string
+
+            // String to store each line of content
             String inputLine;
             while ((inputLine = br.readLine()) != null) {
-                String obString = inputLine;
-                String newIString = obString.replaceAll("[^0-9,]", "");
-                String[] list = newIString.split(",", -1);
-
-                System.out.println(newIString);
+                String newIString = inputLine.replaceAll("[^0-9,]", "");
+                String[] stringList = newIString.split(",");
+                System.out.println(stringList[1]);
             }
 
             br.close();
-            // create ListId from scanned Strings
-            // add ListId objects to ArrayList
 
         }
         // catch url errors
@@ -43,6 +44,8 @@ public class Main {
             e.printStackTrace();
         }
 
+        // create ListId from scanned Strings
+        // add ListId objects to ArrayList
         ListId first = new ListId(2, 17, "mark");
         ListId second = new ListId(4, 100, "nolan");
         ListId third = new ListId(3, 45, "debbie");
@@ -92,7 +95,7 @@ public class Main {
                 break;
         }
 
-        System.out.print(ids.toString());
+        System.out.println(ids.toString());
 
     }
 
