@@ -1,3 +1,5 @@
+package UnitTests;
+
 import org.junit.Test;
 
 public class UnitTest {
