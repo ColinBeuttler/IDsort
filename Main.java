@@ -42,14 +42,14 @@ public class Main {
                     // create String array that will be used for each object
                     String[] stringList = newIString.split(",", 4);
                     // put each string array into my object and add them to the arraylist
-                    ids.add(new ListId(Integer.parseInt(stringList[0]), Integer.parseInt(stringList[1]),
-                            stringList[2]));
+                    if (stringList[2].length() > 1) {
+                        ids.add(new ListId(Integer.parseInt(stringList[0]), Integer.parseInt(stringList[1]),
+                                Integer.parseInt(stringList[2])));
+                    }
+
                 }
-
             }
-
             br.close();
-
         }
         // catch url errors
         catch (IOException e) {
@@ -62,13 +62,11 @@ public class Main {
 
         // if (ans == "Enter") {
 
-        ids.removeIf(n -> (((ListId) n).getName() == null || ((ListId) n).getName().isBlank()));
-
         // sort arrayList by ListId id value
         Collections.sort(ids, new Comparator<ListId>() {
             public int compare(ListId o1, ListId o2) {
                 if (o1.getListId() == o2.getListId()) {
-                    return o1.getName().compareTo(o2.getName());
+                    return o1.getName() < o2.getName() ? -1 : 1;
                 } else
                     return o1.getListId() < o2.getListId() ? -1 : 1;
             }

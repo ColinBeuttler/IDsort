@@ -5,10 +5,10 @@ public class ListId {
     // fields for id object
     int id;
     int listId;
-    private String name;
+    int name;
 
     // Constructor
-    public ListId(int id, int listId, String name) {
+    public ListId(int id, int listId, int name) {
         this.id = id;
         this.listId = listId;
         this.name = name;
@@ -23,7 +23,7 @@ public class ListId {
         return this.listId;
     }
 
-    public String getName() {
+    public int getName() {
         return this.name;
     }
 
@@ -36,7 +36,7 @@ public class ListId {
         this.listId = listId;
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 
