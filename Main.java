@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -32,8 +32,12 @@ public class Main {
             String inputLine;
             while ((inputLine = br.readLine()) != null) {
                 String newIString = inputLine.replaceAll("[^0-9,]", "");
-                String[] stringList = newIString.split(",");
-                System.out.println(stringList[1]);
+                if (newIString.length() > 1) {
+                    String[] stringList = newIString.split(",", 4);
+                    ids.add(new ListId(Integer.parseInt(stringList[0]), Integer.parseInt(stringList[1]),
+                            stringList[2]));
+                }
+
             }
 
             br.close();
@@ -43,18 +47,6 @@ public class Main {
         catch (IOException e) {
             e.printStackTrace();
         }
-
-        // create ListId from scanned Strings
-        // add ListId objects to ArrayList
-        ListId first = new ListId(2, 17, "mark");
-        ListId second = new ListId(4, 100, "nolan");
-        ListId third = new ListId(3, 45, "debbie");
-        ListId fourth = new ListId(0, 0, null);
-
-        ids.add(first);
-        ids.add(second);
-        ids.add(third);
-        ids.add(fourth);
 
         // take the Array, [0], [1], [2], create the new object
         // push object to ids.
@@ -95,7 +87,10 @@ public class Main {
                 break;
         }
 
-        System.out.println(ids.toString());
+        @SuppressWarnings("rawtypes")
+        Iterator iterator = ids.iterator();
+        while (iterator.hasNext())
+            System.out.println(iterator.next());
 
     }
 

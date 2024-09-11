@@ -42,9 +42,9 @@ public class ListId {
     @Override
     public String toString() {
         return "{" +
-                " id='" + getId() + "'" +
-                ", listId='" + getListId() + "'" +
-                ", name='" + getName() + "'" +
+                " id: " + getId() +
+                ", listId: " + getListId() +
+                ", name: '" + "Item " + getName() + "'" +
                 "}";
     }
 
