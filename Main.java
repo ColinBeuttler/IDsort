@@ -41,8 +41,9 @@ public class Main {
                 if (newIString.length() > 1) {
                     // create String array that will be used for each object
                     String[] stringList = newIString.split(",", 4);
-                    // put each string array into my object and add them to the arraylist
+                    // checks if the stringList[2] has usable data
                     if (stringList[2].length() > 1) {
+                        // put each string array into my object and add them to the arraylist
                         ids.add(new ListId(Integer.parseInt(stringList[0]), Integer.parseInt(stringList[1]),
                                 Integer.parseInt(stringList[2])));
                     }
