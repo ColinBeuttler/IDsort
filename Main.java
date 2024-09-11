@@ -38,11 +38,11 @@ public class Main {
                 // remove all the excess char to prepare to split the string
                 String newIString = inputLine.replaceAll("[^0-9,]", "");
                 // check for any lines that do not have usable data
-                if (newIString.length() > 1) {
+                if (!(newIString.isEmpty()) || newIString == null) {
                     // create String array that will be used for each object
                     String[] stringList = newIString.split(",", 4);
                     // checks if the stringList[2] has usable data
-                    if (stringList[2].length() > 1) {
+                    if (!(stringList[2].isEmpty()) || stringList[2] == null) {
                         // put each string array into my object and add them to the arraylist
                         ids.add(new ListId(Integer.parseInt(stringList[0]), Integer.parseInt(stringList[1]),
                                 Integer.parseInt(stringList[2])));
